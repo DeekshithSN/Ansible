@@ -1,0 +1,9 @@
+- hosts: localhost
+  gather_facts: true
+  tasks:
+  - name: run apt-get
+    command: apt-get install tree -y
+    when: ansible_distribution == "Ubuntu"
+  - name: run yum
+    command: yum install tree -y
+    when: ansible_distribution == "CentOS"

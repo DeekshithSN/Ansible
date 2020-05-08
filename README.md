@@ -41,8 +41,19 @@
       Navigate to the script location and run it. In this case, we have navigated to the Desktop location where we saved the script. Next, proceed and execute the WinRM script on the WIndows host:
       
       .\ConfigureRemotingForAnsible.ps1
+
+![Run-PowerShell-as-Administrator](https://user-images.githubusercontent.com/29688323/81408838-979e3200-915b-11ea-8682-ebc9dc4ff69f.jpg)
       
       This takes about a minute and you should get the output shown below. The output shows that WinRM has successfully been installed.
       
       
-      
+![set-up-WinRM-on-Windows10](https://user-images.githubusercontent.com/29688323/81408784-7a696380-915b-11ea-85a4-03de412c8e81.jpg)   
+
+## Connecting to Windows Node from Ansible Control Node
+
+- To test connectivity to the Windows 10 host, run the command: ``` ansible winhost -m win_ping ```
+
+below should be the output 
+
+![Ansible-ping-windows-host-machine](https://user-images.githubusercontent.com/29688323/81409047-ffed1380-915b-11ea-9aff-d5092d3f1814.jpg)
+

@@ -1,0 +1,10 @@
+---
+- hosts: dev
+  become: yes
+  gather_facts: false
+  tasks:
+    - name: Install application tree
+      yum:
+        name: tree
+        state: absent
+      check_mode: no

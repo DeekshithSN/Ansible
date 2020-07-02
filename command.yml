@@ -1,0 +1,8 @@
+---
+- hosts: dev
+  become: yes
+  gather_facts: false
+  tasks:
+    - name: return motd to registered var
+      command: touch xyz
+      

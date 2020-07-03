@@ -3,6 +3,6 @@
   become: yes
   gather_facts: false
   tasks:
-    - name: return motd to registered var
+    - name: create file name xyz
       command: touch xyz
       

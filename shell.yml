@@ -1,0 +1,9 @@
+---
+- hosts: dev
+  become: yes
+  gather_facts: false
+  tasks:
+    - name: Change the working directory to somedir/ before executing the command.
+      shell: somescript.sh >> somelog.txt
+      args:
+        chdir: somedir/

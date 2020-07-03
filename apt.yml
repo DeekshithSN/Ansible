@@ -1,0 +1,9 @@
+---
+- hosts: dev
+  become: yes
+  gather_facts: false
+  tasks:
+    - name: Install application tree
+      apt:
+        name: tree
+        state: present

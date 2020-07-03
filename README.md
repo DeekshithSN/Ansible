@@ -23,8 +23,9 @@
         ansible_winrm_server_cert_validation=ignore
 
   ## Unlike in Unix systems where Ansible uses SSH to communicate with remote hosts, with Windows it’s a different story altogether. To communicate with Windows hosts, you need to install Winrm.
-
-  -  pip install pywinrm
+  
+  - sudo apt install python-pip
+  - pip install pywinrm
 
 # Configuring Windows Node
 

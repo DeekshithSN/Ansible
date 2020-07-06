@@ -1,0 +1,18 @@
+---
+- hosts: dev
+  become: yes
+  gather_facts: false
+  tasks:
+    - name: create file name xyz
+      command: touch xyz
+    - name: Change file ownership, group and permissions
+      file:
+        path: /root/xyz
+        owner: root
+        group: root
+        mode: '0777'
+    - name: Before Ansible 2.3, option 'dest', 'destfile' or 'name' was used instead of 'path'
+      replace:
+        path: /root/xyz
+        regexp: 'password'
+        replace: 'pass'

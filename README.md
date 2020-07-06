@@ -1,4 +1,4 @@
-# In ansible master
+# In ansible master need to follow below steps 
 
   ## Ansible installation 
   In Centos (Ansible master) make sure ansible installed, if not follow below steps 

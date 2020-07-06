@@ -17,8 +17,8 @@
         Ip_address  #change this to your windows ip 
 
         [winhost:vars]
-        ansible_user=user_name     #windows username 
-        ansible_password=********   #windows password 
+        ansible_user=user_name     # windows username 
+        ansible_password=********   # windows password 
         ansible_connection=winrm
         ansible_winrm_server_cert_validation=ignore
 

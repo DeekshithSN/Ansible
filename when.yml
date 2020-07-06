@@ -1,0 +1,19 @@
+- hosts: localhost
+  gather_facts: true
+  tasks:
+    - command: /bin/false
+      register: result
+      ignore_errors: True
+
+    - name: if its failed
+      command: echo "failed"
+      when: result is failed
+
+    # In older versions of ansible use ``success``, now both are valid but succeeded uses the correct tense.
+    - name: if its success
+      command: echo "Success"
+      when: result is succeeded
+
+    - name: if its skipped
+      command: echo "skipped"
+      when: result is skipped

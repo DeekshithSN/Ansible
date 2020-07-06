@@ -4,6 +4,9 @@
   - name: run apt-get
     command: apt-get install tree -y
     when: ansible_distribution == "Ubuntu"
+  - name: run yum update 
+    command: yum update
+    when: ansible_distribution == "CentOS"
   - name: run yum
     command: yum install tree -y
     when: ansible_distribution == "CentOS"

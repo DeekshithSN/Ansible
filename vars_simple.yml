@@ -6,3 +6,38 @@
    - name: Ansible Variable Basic Usage
      debug:
        msg:  "{{ salutations }}"
+
+
+
+---
+- hosts: dev
+  vars:
+    students:
+      - Mark
+      - Melisa
+      - Arthur
+      - Kevin
+      - Lisa
+  tasks:
+  - name: Ansible List variable Example
+    debug:
+      msg: "{{ students[2] }}"
+      
+      
+      
+---
+- hosts: dev
+  vars:
+    students:
+         - Mark: 
+             city: Melbourne
+             address: 0045-0987-8642
+         - Angela: 
+             city: Sydney
+             address: 3456-7685-9087
+  tasks:
+    - debug:
+        var: students
+        
+        
+ # based on os running tasks is best example for vars

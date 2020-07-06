@@ -1,0 +1,13 @@
+---
+- hosts: dev
+  become: yes
+  gather_facts: false
+  tasks:
+    - name: create file name xyz
+      command: touch xyz
+    - name: Change file ownership, group and permissions
+      file:
+        path: /root/xyz
+        owner: root
+        group: root
+        mode: '0777'

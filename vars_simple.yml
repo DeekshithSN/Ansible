@@ -1,5 +1,5 @@
 ---
- - hosts: all
+ - hosts: dev
    vars:
      salutations: Hello guys!
    tasks:

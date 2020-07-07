@@ -1,0 +1,18 @@
+---
+- hosts: dev
+  tasks:
+  - name: Install nginx
+    package:
+      name: nginx
+      state: present
+    notify:
+    - Start nginx
+  - name: ensure apache is running
+    service:
+      name: nginx
+      state: started
+  handlers:
+    - name: Start nginx
+      service:
+        name: nginx
+        state: started

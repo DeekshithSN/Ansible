@@ -1,0 +1,107 @@
+---
+- hosts: dev
+  tasks:
+    - name: Create new user john
+      user:
+        name: john
+        state: present
+        
+      
+      
+      
+---
+- hosts: ubuntu_webserver
+  tasks:
+    - name: Create new user john
+      user:
+        name: john
+        state: present
+
+    - name: Create new user mike
+      user:
+        name: mike
+        state: present
+
+    - name: Create new user andrew
+      user:
+        name: andrew
+        state: present
+        
+        
+        
+---
+- hosts: ubuntu_webserver
+  tasks:
+    - name: Create new users
+      user:
+        name: '{{ item }}'
+        state: present
+      loop:
+        - john
+        - mike
+        - andrew
+        
+        
+     
+---
+- hosts: ubuntu_webserver
+  become: yes
+  tasks:
+    - name: Create new users
+      user:
+        name: '{{ item.name }}'
+        uid: '{{ item.uid }}'
+        state: present
+
+      loop:
+        - name: john
+          uid: 1020
+        - name: mike
+          uid: 1030
+        - name: andrew
+          uid: 1040
+          
+          
+          
+---
+- hosts: ubuntu_webserver
+  tasks:
+  - name: Indexes with Ansible loop
+    debug:
+      msg: "The car at {{ item.0 }} is {{ item.1 }}"
+    with_indexed_items:
+      - "Nissan"
+      - "Mercedes"
+      - "Toyota"
+      - "Mazda"
+      - "BMW"
+      
+      
+      
+---
+- name: Install software
+  become: yes
+  hosts: all
+  vars:
+    packages:
+      - name: neofetch
+        required: True
+
+      - name: cpu-checker
+        required: True
+
+      - name: screenfetch
+        required: False
+  tasks:
+    - name: Install "{{ item.name }}" on Ubuntu
+      apt:
+        name: "{{ item.name }}"
+        state: present
+
+      when:
+        - item.required == True
+        - ansible_facts['distribution'] =="Ubuntu"
+
+      loop: "{{ packages }}"
+          
+ 

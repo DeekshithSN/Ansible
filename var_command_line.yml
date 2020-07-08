@@ -5,8 +5,8 @@
   tasks:
     - name: Install application tree
       yum:
-        name: {{ application_name }}
-        state: {{ state }}
+        name: "{{ application_name }}"
+        state: "{{ state }}"
         
         
 # command to run this playbook ansible-playbook test.yml --extra-vars "application_name=tree state=present" 

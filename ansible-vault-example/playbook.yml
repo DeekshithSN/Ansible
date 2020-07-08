@@ -1,5 +1,4 @@
-- hosts: node
-  sudo: yes
+- hosts: localhost
   vars:
     - foo: "bar"
 

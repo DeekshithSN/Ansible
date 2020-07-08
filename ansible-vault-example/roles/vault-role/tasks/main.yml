@@ -1,0 +1,4 @@
+---
+# tasks file for vault-role
+- debug:
+    msg: "{{db_password}}"

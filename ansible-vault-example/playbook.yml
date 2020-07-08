@@ -1,0 +1,10 @@
+- hosts: node
+  sudo: yes
+  vars:
+    - foo: "bar"
+
+    - multiline: |
+        test1
+        test2
+  roles:
+    - vault-role

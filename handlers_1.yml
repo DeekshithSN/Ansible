@@ -1,0 +1,27 @@
+- name: handlers
+  hosts: dev
+  become: yes
+  tasks:
+         - name: update everything
+           package:
+               name: '*'
+               state: latestFor example, it is useful for secondary actions that might be required after running a Task, such as installing a new service after installation then run the service or update configuration of service.
+               exclude: kernel*
+         - name: Copy using inline content
+           copy:
+               content: "update the file"
+               dest: /home/dee.txt
+               mode: "0777"
+           notify:
+                - update
+                - data
+  handlers:
+       - name: update
+         find:
+                paths: /home/
+                patterns: '*.txt'
+                recurse: yes
+         register: new_file
+       - name: data
+         debug:
+            var: new_file.matched

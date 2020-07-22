@@ -1,0 +1,27 @@
+---
+- hosts: localhost
+  become: yes
+  gather_facts: false
+  tasks:
+    - name: installing wget 
+      apt:
+        name: wget
+        state: present 
+    - name: download Jenkins
+      get_url:
+        url: https://updates.jenkins-ci.org/download/war/2.248/jenkins.war
+        dest: /home/spovedd
+    
+- hosts: dev
+  become: yes
+  gather_facts: false
+  tasks:
+    - name: copy jenkins war to host machines
+      copy:
+        src: /home/spovedd/jenkins.war
+        dest: /home/jenkins.war
+    - name: creating folder structure and running jenkins in the background 
+      shell: |
+        mkdir -p /home/spovedd/jenkins
+        mv /home/jenkins.war /home/spovedd/jenkins
+        nohup java -jar /home/spovedd/jenkins/jenkins.war &

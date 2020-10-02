@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  become: true
+  tasks:
+    - name: execute always 
+      command: echo "this is from always tag"
+      tags:
+        - always
+    - name: Install apache
+      apt:
+        name: "apache2"
+        state: "present"
+      tags:
+        - install
+    - name: Deploy static website
+      copy:
+        src: index.html
+        dest: /var/www/html/
+      tags:
+        - config

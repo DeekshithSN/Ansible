@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  become: true
+  tasks:
+    - name: Install apache
+      apt:
+        name: "apache2"
+        state: "present"
+    - name: Deploy static website
+      copy:
+        src: index.html
+        dest: /var/www/html/
+    - name: Restart apache
+      service:
+        name: apache2
+        state: restarted

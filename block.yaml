@@ -1,0 +1,30 @@
+ - name: Install software
+   hosts: localhost
+   tasks:
+    - name: Install, configure, and start Apache
+      block:
+        - name: Install httpd and memcached
+          ansible.builtin.yum:
+            name:
+            - httpd
+            - memcached
+            state: present
+
+        - name: Apply the foo config template
+          ansible.builtin.template:
+            src: templates/src.j2
+            dest: /etc/foo.conf
+
+        - name: Start service bar and enable it
+          ansible.builtin.service:
+            name: bar
+            state: started
+            enabled: True
+      when: ansible_facts['distribution'] == 'CentOS'
+      become: true
+      become_user: root
+      ignore_errors: yes
+    - name: install tree
+      apt:
+        name: tree
+        state: absent

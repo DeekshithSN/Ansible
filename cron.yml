@@ -1,0 +1,36 @@
+# state:  
+   This parameter takes in two choices (present or absent). If you set it to  “Absent”, it will remove the command. 
+   Otherwise, it will create the command if it has not been created.
+# cron_file: 
+   If you maintain your commands in a file, this parameter is useful for you. By specifying the path to your cron file,
+   Ansible will use the file instead of writing to the crontab.
+# backup:  
+   Sometimes, you may want to create a backup of every crontab prior to modifying it. By setting back up to yes, 
+   Ansible will create a backup of the crontab, and return it back in the backup_file variable. 
+   The backup file will be of the user you mention.
+
+- name: Cron Job
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Crontab file exists
+      cron:
+        name: Add date and time to a file.
+        minute: "*/2"
+        hour: 9-16
+        weekday: 1-5
+        user: devops
+        job: df >> /home/devops/disk_usage
+        cron_file: disk_usage
+        state: present
+        
+ # For Script
+ - name: Creates weekly backup cronjob
+  cron: minute="20" hour="5" weekday="sun"
+        name="Backup mysql tables (weekly schedule)"
+        cron_file="mysqlbackup-WeeklyBackups"
+        user="root"
+        job="/usr/local/bin/mysqlbackup.WeeklyBackups.sh"
+  tags:
+    - mysql
+    - cronjobs

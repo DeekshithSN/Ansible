@@ -4,19 +4,19 @@
     - name: Install, configure, and start Apache
       block:
         - name: Install httpd and memcached
-          ansible.builtin.yum:
+          yum:
             name:
             - httpd
             - memcached
             state: present
 
         - name: Apply the foo config template
-          ansible.builtin.template:
+          template:
             src: templates/src.j2
             dest: /etc/foo.conf
 
         - name: Start service bar and enable it
-          ansible.builtin.service:
+          service:
             name: bar
             state: started
             enabled: True
